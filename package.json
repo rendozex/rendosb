@@ -33,13 +33,16 @@
       "target": [
         {
           "target": "dir",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "signAndEditExecutable": false
     }
   },
   "devDependencies": {
+    "@vscode/codicons": "^0.0.45",
     "electron": "^35.7.5",
     "electron-builder": "^25.1.8"
   }

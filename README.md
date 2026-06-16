@@ -94,6 +94,24 @@ grok-gui/
 └── package.json
 ```
 
+## Sync UI from VS Code source
+
+When `vscode-main` gets updates, pull the latest chat CSS and themes into RendoSB:
+
+```powershell
+.\sync-from-vscode.cmd
+```
+
+Or:
+
+```powershell
+.\scripts\sync-from-vscode.ps1
+```
+
+This copies chat styles, codicons, code-block CSS, and all default theme JSON files from `../vscode-main` into `renderer/styles/vscode-ui/`. A manifest is written to `renderer/styles/vscode-ui/sync-manifest.json`.
+
+Custom RendoSB themes in `renderer/styles/themes.css` are not overwritten — only the extracted VS Code assets are updated.
+
 ## Push to GitHub
 
 Requires [GitHub CLI](https://cli.github.com/) (`gh auth login`):

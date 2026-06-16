@@ -120,7 +120,9 @@ if (-not $status) {
 }
 else {
   Write-Host "Committing..." -ForegroundColor Yellow
-  git commit -m "Initial commit: RendoSB LLM GUI"
+  $summary = (git diff --cached --stat | Select-Object -Last 1)
+  $message = if ($summary -match 'files? changed') { "Update RendoSB: $summary" } else { "Update RendoSB" }
+  git commit -m $message
   if ($LASTEXITCODE -ne 0) { throw "git commit failed" }
 }
 
