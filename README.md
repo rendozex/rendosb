@@ -33,7 +33,15 @@ npm install
 npm start
 ```
 
-Or run the built executable:
+Or download the pre-built release (no Node.js required):
+
+**https://github.com/rendozex/rendosb/releases/latest**
+
+1. Download `RendoSB-1.0.0-win-x64.zip`
+2. Extract anywhere
+3. Run `RendoSB.exe`
+
+Or run a local build:
 
 ```text
 release\win-unpacked\RendoSB.exe
@@ -77,6 +85,20 @@ Output:
 - `release\RendoSB-1.0.0-win-x64.zip`
 
 Close any running `RendoSB.exe` before rebuilding.
+
+## Publish a GitHub Release
+
+Build and upload the pre-compiled zip to GitHub Releases:
+
+```powershell
+.\publish-release.ps1
+```
+
+Upload an existing build without rebuilding:
+
+```powershell
+.\publish-release.ps1 -SkipBuild
+```
 
 ## Themes
 
