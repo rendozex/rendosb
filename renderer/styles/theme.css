@@ -41,7 +41,8 @@ html, body {
 [data-theme="abyss"],
 [data-theme="tomorrow-night-blue"],
 [data-theme="kimbie-dark"],
-[data-theme="red"] {
+[data-theme="red"],
+[data-theme="monokai-dimmed"] {
   color-scheme: dark;
 }
 

@@ -5,6 +5,53 @@
 .codicon-comment-discussion::before { content: "\eac7"; }
 .codicon-settings-gear::before { content: "\eb51"; }
 .codicon-refresh::before { content: "\eb37"; }
+.codicon-go-to-file::before { content: "\ea94"; }
+.codicon-folder::before { content: "\ea83"; }
+
+.monaco-workbench .part.titlebar {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding: 0 12px;
+  background: var(--vscode-titleBar-activeBackground);
+  border-bottom: 1px solid var(--vscode-titleBar-border);
+  color: var(--vscode-titleBar-activeForeground);
+}
+
+.monaco-workbench .part.titlebar > .titlebar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+}
+
+.monaco-workbench .part.sidebar.explorer-panel {
+  border-color: var(--vscode-sideBar-border);
+}
+
+.monaco-workbench .part.editor .editor-group-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.monaco-workbench .monaco-editor-pane-placeholder .editor-placeholder-label {
+  color: var(--vscode-descriptionForeground);
+  font-size: 13px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.chat-viewpane .chat-view-title-container {
+  display: flex;
+  width: 100%;
+}
+
+.chat-viewpane .panel-header {
+  width: 100%;
+}
 
 /* Bridge VS Code part classes into RendoSB layout */
 .monaco-workbench .part.activitybar > .content {

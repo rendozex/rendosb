@@ -28,12 +28,23 @@
   <link rel="stylesheet" href="styles/vscode-ui/statusbarpart.css">
   <link rel="stylesheet" href="styles/vscode-ui/panelpart.css">
   <link rel="stylesheet" href="styles/vscode-ui/editortabscontrol.css">
+  <link rel="stylesheet" href="styles/vscode-ui/sidebarpart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/titlebarpart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/views.css">
+  <link rel="stylesheet" href="styles/vscode-ui/editorgroupview.css">
+  <link rel="stylesheet" href="styles/vscode-ui/editorplaceholder.css">
+  <link rel="stylesheet" href="styles/vscode-ui/activityaction.css">
+  <link rel="stylesheet" href="styles/vscode-ui/compositepart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatViewTitleControl.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatGoalBannerWidget.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatContextUsageWidget.css">
   <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
   <div class="monaco-workbench">
-    <div class="titlebar">
-      <span class="titlebar-title">RendoSB</span>
+    <div class="part titlebar titlebar">
+      <div class="titlebar-container">
+      <span class="titlebar-title window-title">RendoSB</span>
       <div class="titlebar-controls">
         <span class="titlebar-label">Folder</span>
         <button class="btn secondary titlebar-btn" id="btn-titlebar-folder" type="button">Browse</button>
@@ -49,6 +60,7 @@
       </div>
       <div class="titlebar-actions">
         <button class="btn secondary" id="btn-new-chat" type="button">New Chat</button>
+      </div>
       </div>
     </div>
 
@@ -68,8 +80,8 @@
       </nav>
 
       <div class="workspace-split">
-        <aside class="explorer-panel" id="explorer-panel">
-          <div class="explorer-header">
+        <aside class="part sidebar left explorer-panel" id="explorer-panel">
+          <div class="title explorer-header">
             <div class="explorer-header-titles">
               <span class="explorer-header-label">Explorer</span>
               <span class="explorer-root-label" id="explorer-root-label">No folder selected</span>
@@ -78,26 +90,37 @@
               <span class="codicon codicon-refresh" aria-hidden="true"></span>
             </button>
           </div>
-          <div class="explorer-tree" id="file-tree">
+          <div class="explorer-tree viewlet" id="file-tree">
             <div class="empty-state">Set a working directory in Settings</div>
           </div>
         </aside>
 
-        <section class="editor-panel" id="editor-panel">
+        <section class="part editor editor-panel" id="editor-panel">
+          <div class="editor-group-container">
           <div class="editor-tabs" id="editor-tabs"></div>
           <div class="editor-live-banner" id="editor-live-banner">Writing file…</div>
           <div class="editor-viewport">
             <div class="editor-gutter" id="editor-gutter"></div>
             <div class="editor-code-wrap">
-              <div class="editor-empty" id="editor-empty">Open a file from the explorer, or ask the AI to write code</div>
+              <div class="editor-empty monaco-editor-pane-placeholder" id="editor-empty">
+                <div class="editor-placeholder-icon-container">
+                  <span class="codicon codicon-go-to-file" aria-hidden="true"></span>
+                </div>
+                <div class="editor-placeholder-label">Open a file from the explorer, or ask the AI to write code</div>
+              </div>
               <pre class="editor-code hidden" id="editor-code"></pre>
             </div>
           </div>
+          </div>
         </section>
 
-        <section class="chat-panel part panel right">
+        <section class="chat-panel part panel right chat-viewpane">
           <div class="panel-header composite title">
-            <span class="panel-tab active">Chat</span>
+            <div class="chat-view-title-container">
+              <div class="chat-view-title-inner">
+                <span class="panel-tab active chat-view-title-label">Chat</span>
+              </div>
+            </div>
           </div>
 
           <div class="panel-body" id="chat-view">
@@ -147,6 +170,7 @@
               <div id="error-banner" class="error-banner hidden" role="alert"></div>
 
               <div class="interactive-input-part" id="chat-input-section">
+                <div class="chat-goal-banner-container" id="chat-goal-banner" aria-live="polite"></div>
                 <div class="chat-input-container" id="chat-input-container">
                   <div class="interactive-input-editor">
                     <textarea id="chat-input" rows="1" placeholder="Ask anything… (Enter to send)" aria-label="Chat input"></textarea>
@@ -181,8 +205,8 @@
         </section>
       </div>
 
-      <aside class="sidebar hidden" id="sidebar-settings">
-        <div class="sidebar-header">Settings</div>
+      <aside class="part sidebar sidebar hidden" id="sidebar-settings">
+        <div class="title sidebar-header">Settings</div>
         <div class="sidebar-content settings-panel">
           <div class="settings-row">
             <label for="setting-theme">Theme</label>

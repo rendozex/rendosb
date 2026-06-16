@@ -53,7 +53,19 @@ $FileMap = @(
   @{ Src = "src\vs\workbench\browser\parts\activitybar\media\activitybarpart.css"; Dst = "renderer\styles\vscode-ui\activitybarpart.css" },
   @{ Src = "src\vs\workbench\browser\parts\statusbar\media\statusbarpart.css"; Dst = "renderer\styles\vscode-ui\statusbarpart.css" },
   @{ Src = "src\vs\workbench\browser\parts\panel\media\panelpart.css"; Dst = "renderer\styles\vscode-ui\panelpart.css" },
-  @{ Src = "src\vs\workbench\browser\parts\editor\media\editortabscontrol.css"; Dst = "renderer\styles\vscode-ui\editortabscontrol.css" }
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editortabscontrol.css"; Dst = "renderer\styles\vscode-ui\editortabscontrol.css" },
+  # Batch 3 — workbench shell + editor
+  @{ Src = "src\vs\workbench\browser\parts\sidebar\media\sidebarpart.css"; Dst = "renderer\styles\vscode-ui\sidebarpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\titlebar\media\titlebarpart.css"; Dst = "renderer\styles\vscode-ui\titlebarpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\views\media\views.css"; Dst = "renderer\styles\vscode-ui\views.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editorgroupview.css"; Dst = "renderer\styles\vscode-ui\editorgroupview.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editorplaceholder.css"; Dst = "renderer\styles\vscode-ui\editorplaceholder.css" },
+  @{ Src = "src\vs\workbench\browser\parts\activitybar\media\activityaction.css"; Dst = "renderer\styles\vscode-ui\activityaction.css" },
+  @{ Src = "src\vs\workbench\browser\parts\media\compositepart.css"; Dst = "renderer\styles\vscode-ui\compositepart.css" },
+  # Batch 3 — chat view polish
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatViewTitleControl.css"; Dst = "renderer\styles\vscode-ui\chatViewTitleControl.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\input\media\chatGoalBannerWidget.css"; Dst = "renderer\styles\vscode-ui\chatGoalBannerWidget.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatContextUsageWidget.css"; Dst = "renderer\styles\vscode-ui\chatContextUsageWidget.css" }
 )
 
 $CodiconFontCandidates = @(
@@ -146,7 +158,8 @@ $extensionThemePacks = @(
   "theme-tomorrow-night-blue",
   "theme-quietlight",
   "theme-red",
-  "theme-kimbie-dark"
+  "theme-kimbie-dark",
+  "theme-monokai-dimmed"
 )
 foreach ($pack in $extensionThemePacks) {
   $packDir = Join-Path $VscodeRoot "extensions\$pack\themes"

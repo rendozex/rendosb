@@ -115,6 +115,25 @@
     }
   }
 
+  function updateGoalBanner(working) {
+    const banner = $('chat-goal-banner');
+    if (!banner) return;
+    const cwd = state.cwd || window.Workspace?.getCwd?.() || '';
+    if (!working || !cwd) {
+      banner.classList.remove('has-goal');
+      banner.innerHTML = '';
+      return;
+    }
+    const short = cwd.replace(/\\/g, '/').split('/').pop() || cwd;
+    banner.classList.add('has-goal');
+    banner.innerHTML = `
+      <div class="chat-goal-banner">
+        <span class="codicon codicon-folder" aria-hidden="true"></span>
+        <span class="chat-goal-banner-text">Working in <strong>${short}</strong></span>
+      </div>
+    `;
+  }
+
   function setWorking(working) {
     state.isStreaming = working;
     chatInputContainer.classList.toggle('working', working);
@@ -122,6 +141,7 @@
     btnStop.disabled = !working;
     chatInput.disabled = working;
     setStatus(working ? 'Generating…' : 'Ready');
+    updateGoalBanner(working);
     window.Workspace?.markStreaming(working);
   }
 

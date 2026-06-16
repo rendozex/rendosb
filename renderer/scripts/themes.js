@@ -17,6 +17,7 @@
     { id: 'one-dark', label: 'One Dark', group: 'dark', windowBackground: '#282C34' },
     { id: 'dracula', label: 'Dracula', group: 'dark', windowBackground: '#282A36' },
     { id: 'monokai', label: 'Monokai', group: 'dark', windowBackground: '#272822' },
+    { id: 'monokai-dimmed', label: 'Monokai Dimmed', group: 'dark', windowBackground: '#1E1E1E' },
     { id: 'solarized-dark', label: 'Solarized Dark', group: 'dark', windowBackground: '#002B36' },
     { id: 'github-dark', label: 'GitHub Dark', group: 'dark', windowBackground: '#0D1117' },
     { id: 'nord', label: 'Nord', group: 'dark', windowBackground: '#2E3440' },
