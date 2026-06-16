@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="styles/vscode-ui/chatViewTitleControl.css">
   <link rel="stylesheet" href="styles/vscode-ui/chatGoalBannerWidget.css">
   <link rel="stylesheet" href="styles/vscode-ui/chatContextUsageWidget.css">
+  <link rel="stylesheet" href="styles/vscode-ui/batch4-imports.css">
   <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
@@ -90,14 +91,14 @@
               <span class="codicon codicon-refresh" aria-hidden="true"></span>
             </button>
           </div>
-          <div class="explorer-tree viewlet" id="file-tree">
+          <div class="explorer-tree viewlet explorerviewlet monaco-list" id="file-tree">
             <div class="empty-state">Set a working directory in Settings</div>
           </div>
         </aside>
 
         <section class="part editor editor-panel" id="editor-panel">
           <div class="editor-group-container">
-          <div class="editor-tabs" id="editor-tabs"></div>
+          <div class="editor-tabs tabs-container" id="editor-tabs"></div>
           <div class="editor-live-banner" id="editor-live-banner">Writing file…</div>
           <div class="editor-viewport">
             <div class="editor-gutter" id="editor-gutter"></div>
@@ -170,6 +171,7 @@
               <div id="error-banner" class="error-banner hidden" role="alert"></div>
 
               <div class="interactive-input-part" id="chat-input-section">
+                <div class="chat-input-notification-widget hidden" id="chat-input-notification" role="status"></div>
                 <div class="chat-goal-banner-container" id="chat-goal-banner" aria-live="polite"></div>
                 <div class="chat-input-container" id="chat-input-container">
                   <div class="interactive-input-editor">
@@ -207,7 +209,7 @@
 
       <aside class="part sidebar sidebar hidden" id="sidebar-settings">
         <div class="title sidebar-header">Settings</div>
-        <div class="sidebar-content settings-panel">
+        <div class="sidebar-content settings-panel settings-editor preferences-editor">
           <div class="settings-row">
             <label for="setting-theme">Theme</label>
             <select id="setting-theme" aria-label="Color theme"></select>
@@ -242,6 +244,8 @@
         </div>
       </aside>
     </div>
+
+    <div class="notifications-toasts" id="notifications-toasts" aria-live="polite"></div>
   </div>
 
   <script src="scripts/api.js"></script>

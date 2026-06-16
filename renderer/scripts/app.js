@@ -46,14 +46,35 @@
     setStatusbarLabel(statusState, text);
   }
 
+  function showToast(message, kind = 'error') {
+    const host = $('notifications-toasts');
+    if (!host || !message) return;
+    const toast = document.createElement('div');
+    toast.className = `notification-toast-item ${kind}`;
+    toast.textContent = message;
+    host.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+  }
+
   function showError(message) {
     errorBanner.textContent = message;
     errorBanner.classList.remove('hidden');
+    const notify = $('chat-input-notification');
+    if (notify) {
+      notify.textContent = message;
+      notify.classList.remove('hidden');
+    }
+    showToast(message, 'error');
   }
 
   function clearError() {
     errorBanner.classList.add('hidden');
     errorBanner.textContent = '';
+    const notify = $('chat-input-notification');
+    if (notify) {
+      notify.classList.add('hidden');
+      notify.textContent = '';
+    }
   }
 
   function showOllamaGuideError(message) {

@@ -148,6 +148,17 @@ This copies chat styles, codicons, code-block CSS, workbench chrome (activity ba
 | Chat view | `chatViewTitleControl`, `chatGoalBannerWidget`, `chatContextUsageWidget` |
 | Extension theme | Monokai Dimmed |
 
+**Batch 4 assets** (46 files via `batch4-imports.css`):
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| Base Monaco UI | 11 | `actionbar`, `button`, `list`, `tree`, `scrollbars` |
+| Workbench parts | 19 | `notificationsToasts`, `multieditortabscontrol`, `paneviewlet`, `window` |
+| Explorer & settings | 5 | `explorerviewlet`, `openeditors`, `settingsEditor2` |
+| Chat polish | 11 | `chatSubagentContent`, `chatEditingEditorOverlay`, `toolRiskBadge`, `markdown` |
+
+Extension theme JSONs also sync: Monokai, Solarized Dark, Solarized Light.
+
 Custom RendoSB themes in `renderer/styles/themes.css` are not overwritten — only the extracted VS Code assets are updated.
 
 ## Push to GitHub

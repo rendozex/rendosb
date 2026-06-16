@@ -7,6 +7,55 @@
 .codicon-refresh::before { content: "\eb37"; }
 .codicon-go-to-file::before { content: "\ea94"; }
 .codicon-folder::before { content: "\ea83"; }
+.codicon-file::before { content: "\ea7b"; }
+.codicon-file-directory::before { content: "\ea83"; }
+
+.monaco-workbench .explorerviewlet .file-tree-item .codicon {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.monaco-workbench .notifications-toasts {
+  position: fixed;
+  right: 12px;
+  bottom: 28px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.monaco-workbench .notification-toast-item {
+  pointer-events: auto;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 360px;
+  background: var(--vscode-editorWidget-background);
+  border: 1px solid var(--vscode-widget-border);
+  color: var(--vscode-foreground);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.monaco-workbench .notification-toast-item.error {
+  border-color: var(--vscode-errorForeground);
+  color: var(--vscode-errorForeground);
+}
+
+.chat-input-notification-widget {
+  margin: 0 16px 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--vscode-focusBorder) 8%, var(--vscode-editorWidget-background));
+  border: 1px solid var(--vscode-widget-border);
+  color: var(--vscode-descriptionForeground);
+}
+
+.settings-editor.settings-panel .settings-row label {
+  font-weight: 600;
+}
 
 .monaco-workbench .part.titlebar {
   display: flex;

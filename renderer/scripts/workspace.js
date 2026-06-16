@@ -108,10 +108,10 @@
       const isDir = child.type === 'directory';
       const isLive = !isDir && ws.liveFiles.has(child.path);
       const isActive = ws.activeFile === child.path;
-      el.className = `file-tree-item ${isDir ? 'dir' : 'file'}${isLive ? ' live' : ''}${isActive ? ' active' : ''}`;
+      el.className = `monaco-list-row file-tree-item ${isDir ? 'dir' : 'file'}${isLive ? ' live' : ''}${isActive ? ' active' : ''}`;
       el.style.paddingLeft = `${12 + depth * 14}px`;
       el.innerHTML = `
-        <span class="icon">${isDir ? '📁' : '📄'}</span>
+        <span class="icon codicon ${isDir ? 'codicon-file-directory' : 'codicon-file'}" aria-hidden="true"></span>
         <span class="name">${child.name}</span>
       `;
       if (!isDir) {
@@ -152,7 +152,7 @@
       const tab = document.createElement('div');
       const isActive = filePath === ws.activeFile;
       const isLive = ws.liveFiles.has(filePath);
-      tab.className = `editor-tab${isActive ? ' active' : ''}${isLive ? ' live' : ''}`;
+      tab.className = `tab editor-tab${isActive ? ' active' : ''}${isLive ? ' live' : ''}`;
       tab.innerHTML = `
         ${isLive ? '<span class="tab-dot"></span>' : ''}
         <span>${filePath.split('/').pop()}</span>

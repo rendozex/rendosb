@@ -65,7 +65,72 @@ $FileMap = @(
   # Batch 3 — chat view polish
   @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatViewTitleControl.css"; Dst = "renderer\styles\vscode-ui\chatViewTitleControl.css" },
   @{ Src = "src\vs\workbench\contrib\chat\browser\widget\input\media\chatGoalBannerWidget.css"; Dst = "renderer\styles\vscode-ui\chatGoalBannerWidget.css" },
-  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatContextUsageWidget.css"; Dst = "renderer\styles\vscode-ui\chatContextUsageWidget.css" }
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatContextUsageWidget.css"; Dst = "renderer\styles\vscode-ui\chatContextUsageWidget.css" },
+  # Batch 4 — base Monaco UI (11)
+  @{ Src = "src\vs\base\browser\ui\actionbar\actionbar.css"; Dst = "renderer\styles\vscode-ui\actionbar.css" },
+  @{ Src = "src\vs\base\browser\ui\aria\aria.css"; Dst = "renderer\styles\vscode-ui\aria.css" },
+  @{ Src = "src\vs\base\browser\ui\button\button.css"; Dst = "renderer\styles\vscode-ui\button.css" },
+  @{ Src = "src\vs\base\browser\ui\contextview\contextview.css"; Dst = "renderer\styles\vscode-ui\contextview.css" },
+  @{ Src = "src\vs\base\browser\ui\dropdown\dropdown.css"; Dst = "renderer\styles\vscode-ui\dropdown.css" },
+  @{ Src = "src\vs\base\browser\ui\inputbox\inputBox.css"; Dst = "renderer\styles\vscode-ui\inputBox.css" },
+  @{ Src = "src\vs\base\browser\ui\list\list.css"; Dst = "renderer\styles\vscode-ui\list.css" },
+  @{ Src = "src\vs\base\browser\ui\sash\sash.css"; Dst = "renderer\styles\vscode-ui\sash.css" },
+  @{ Src = "src\vs\base\browser\ui\scrollbar\media\scrollbars.css"; Dst = "renderer\styles\vscode-ui\scrollbars.css" },
+  @{ Src = "src\vs\base\browser\ui\splitview\splitview.css"; Dst = "renderer\styles\vscode-ui\splitview.css" },
+  @{ Src = "src\vs\base\browser\ui\tree\media\tree.css"; Dst = "renderer\styles\vscode-ui\tree.css" },
+  # Batch 4 — workbench parts (19)
+  @{ Src = "src\vs\workbench\browser\parts\auxiliarybar\media\auxiliaryBarPart.css"; Dst = "renderer\styles\vscode-ui\auxiliaryBarPart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\banner\media\bannerpart.css"; Dst = "renderer\styles\vscode-ui\bannerpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\breadcrumbscontrol.css"; Dst = "renderer\styles\vscode-ui\breadcrumbscontrol.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editordroptarget.css"; Dst = "renderer\styles\vscode-ui\editordroptarget.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editorquickaccess.css"; Dst = "renderer\styles\vscode-ui\editorquickaccess.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editorstatus.css"; Dst = "renderer\styles\vscode-ui\editorstatus.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editortitlecontrol.css"; Dst = "renderer\styles\vscode-ui\editortitlecontrol.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\modalEditorPart.css"; Dst = "renderer\styles\vscode-ui\modalEditorPart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\multieditortabscontrol.css"; Dst = "renderer\styles\vscode-ui\multieditortabscontrol.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\sidebysideeditor.css"; Dst = "renderer\styles\vscode-ui\sidebysideeditor.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\singleeditortabscontrol.css"; Dst = "renderer\styles\vscode-ui\singleeditortabscontrol.css" },
+  @{ Src = "src\vs\workbench\browser\parts\media\paneCompositePart.css"; Dst = "renderer\styles\vscode-ui\paneCompositePart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\notifications\media\notificationsActions.css"; Dst = "renderer\styles\vscode-ui\notificationsActions.css" },
+  @{ Src = "src\vs\workbench\browser\parts\notifications\media\notificationsCenter.css"; Dst = "renderer\styles\vscode-ui\notificationsCenter.css" },
+  @{ Src = "src\vs\workbench\browser\parts\notifications\media\notificationsList.css"; Dst = "renderer\styles\vscode-ui\notificationsList.css" },
+  @{ Src = "src\vs\workbench\browser\parts\notifications\media\notificationsToasts.css"; Dst = "renderer\styles\vscode-ui\notificationsToasts.css" },
+  @{ Src = "src\vs\workbench\browser\parts\titlebar\media\menubarControl.css"; Dst = "renderer\styles\vscode-ui\menubarControl.css" },
+  @{ Src = "src\vs\workbench\browser\parts\views\media\paneviewlet.css"; Dst = "renderer\styles\vscode-ui\paneviewlet.css" },
+  @{ Src = "src\vs\workbench\electron-browser\media\window.css"; Dst = "renderer\styles\vscode-ui\window.css" },
+  # Batch 4 — explorer, settings, chat polish (16)
+  @{ Src = "src\vs\workbench\contrib\files\browser\media\explorerviewlet.css"; Dst = "renderer\styles\vscode-ui\explorerviewlet.css" },
+  @{ Src = "src\vs\workbench\contrib\files\browser\views\media\openeditors.css"; Dst = "renderer\styles\vscode-ui\openeditors.css" },
+  @{ Src = "src\vs\workbench\contrib\preferences\browser\media\settingsWidgets.css"; Dst = "renderer\styles\vscode-ui\settingsWidgets.css" },
+  @{ Src = "src\vs\workbench\contrib\preferences\browser\media\settingsEditor2.css"; Dst = "renderer\styles\vscode-ui\settingsEditor2.css" },
+  @{ Src = "src\vs\workbench\contrib\preferences\browser\media\preferencesEditor.css"; Dst = "renderer\styles\vscode-ui\preferencesEditor.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatContextUsageDetails.css"; Dst = "renderer\styles\vscode-ui\chatContextUsageDetails.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\input\media\chatInputNotificationWidget.css"; Dst = "renderer\styles\vscode-ui\chatInputNotificationWidget.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatSubagentContent.css"; Dst = "renderer\styles\vscode-ui\chatSubagentContent.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatQuestionCarousel.css"; Dst = "renderer\styles\vscode-ui\chatQuestionCarousel.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatToolConfirmationCarousel.css"; Dst = "renderer\styles\vscode-ui\chatToolConfirmationCarousel.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\toolInvocationParts\media\toolRiskBadge.css"; Dst = "renderer\styles\vscode-ui\toolRiskBadge.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatInlineAnchorWidget.css"; Dst = "renderer\styles\vscode-ui\chatInlineAnchorWidget.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\chatEditing\media\chatEditingEditorOverlay.css"; Dst = "renderer\styles\vscode-ui\chatEditingEditorOverlay.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\chatEditing\media\chatEditingExplanationWidget.css"; Dst = "renderer\styles\vscode-ui\chatEditingExplanationWidget.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\chatEditing\media\chatEditorController.css"; Dst = "renderer\styles\vscode-ui\chatEditorController.css" },
+  @{ Src = "src\vs\workbench\contrib\markdown\browser\media\markdown.css"; Dst = "renderer\styles\vscode-ui\markdown.css" }
+)
+
+$Batch4DstFiles = @(
+  "actionbar.css", "aria.css", "button.css", "contextview.css", "dropdown.css", "inputBox.css",
+  "list.css", "sash.css", "scrollbars.css", "splitview.css", "tree.css",
+  "auxiliaryBarPart.css", "bannerpart.css", "breadcrumbscontrol.css", "editordroptarget.css",
+  "editorquickaccess.css", "editorstatus.css", "editortitlecontrol.css", "modalEditorPart.css",
+  "multieditortabscontrol.css", "sidebysideeditor.css", "singleeditortabscontrol.css",
+  "paneCompositePart.css", "notificationsActions.css", "notificationsCenter.css",
+  "notificationsList.css", "notificationsToasts.css", "menubarControl.css", "paneviewlet.css",
+  "window.css", "explorerviewlet.css", "openeditors.css", "settingsWidgets.css",
+  "settingsEditor2.css", "preferencesEditor.css", "chatContextUsageDetails.css",
+  "chatInputNotificationWidget.css", "chatSubagentContent.css", "chatQuestionCarousel.css",
+  "chatToolConfirmationCarousel.css", "toolRiskBadge.css", "chatInlineAnchorWidget.css",
+  "chatEditingEditorOverlay.css", "chatEditingExplanationWidget.css", "chatEditorController.css",
+  "markdown.css"
 )
 
 $CodiconFontCandidates = @(
@@ -159,7 +224,10 @@ $extensionThemePacks = @(
   "theme-quietlight",
   "theme-red",
   "theme-kimbie-dark",
-  "theme-monokai-dimmed"
+  "theme-monokai-dimmed",
+  "theme-monokai",
+  "theme-solarized-dark",
+  "theme-solarized-light"
 )
 foreach ($pack in $extensionThemePacks) {
   $packDir = Join-Path $VscodeRoot "extensions\$pack\themes"
@@ -190,6 +258,24 @@ $manifest = @{
   syncedAt = (Get-Date).ToString("o")
   vscodeRoot = $VscodeRoot
   files = $FileMap | ForEach-Object { $_.Dst }
+  themeJsonDir = "renderer/styles/vscode-ui/themes"
+}
+$batch4ImportPath = Join-Path $ProjectRoot "renderer\styles\vscode-ui\batch4-imports.css"
+$importLines = @(
+  "/* Auto-generated by sync-from-vscode.ps1 - Batch 4 ($($Batch4DstFiles.Count) files) */"
+)
+foreach ($file in $Batch4DstFiles) {
+  $importLines += "@import url(`"./$file`");"
+}
+$importLines | Set-Content -Path $batch4ImportPath -Encoding UTF8
+Write-Host "  WROTE    renderer/styles/vscode-ui/batch4-imports.css ($($Batch4DstFiles.Count) imports)" -ForegroundColor Green
+
+$manifest = @{
+  syncedAt = (Get-Date).ToString("o")
+  vscodeRoot = $VscodeRoot
+  files = $FileMap | ForEach-Object { $_.Dst }
+  batch4Count = $Batch4DstFiles.Count
+  batch4Imports = "renderer/styles/vscode-ui/batch4-imports.css"
   themeJsonDir = "renderer/styles/vscode-ui/themes"
 }
 $manifestPath = Join-Path $ProjectRoot "renderer\styles\vscode-ui\sync-manifest.json"
