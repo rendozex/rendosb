@@ -1,5 +1,51 @@
 /* RendoSB app-specific styles on top of extracted VS Code chat CSS */
 
+/* Codicon glyphs used in the activity bar and explorer */
+.codicon-files::before { content: "\eaf0"; }
+.codicon-comment-discussion::before { content: "\eac7"; }
+.codicon-settings-gear::before { content: "\eb51"; }
+.codicon-refresh::before { content: "\eb37"; }
+
+/* Bridge VS Code part classes into RendoSB layout */
+.monaco-workbench .part.activitybar > .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  gap: 4px;
+  height: 100%;
+  border-color: var(--vscode-activityBar-border);
+}
+
+.monaco-workbench .part.activitybar .activitybar-item .codicon {
+  font-size: 24px;
+}
+
+.monaco-workbench .part.activitybar .activitybar-item svg {
+  display: none;
+}
+
+.chat-panel.part.panel {
+  border-color: var(--vscode-panel-border);
+}
+
+.chat-panel .part.statusbar {
+  flex-shrink: 0;
+  --status-border-top-color: var(--vscode-statusBar-border);
+  background: var(--vscode-statusBar-background);
+  color: var(--vscode-statusBar-foreground);
+  border-top: 1px solid var(--vscode-statusBar-border);
+}
+
+.chat-panel .part.statusbar .statusbar-item-label {
+  padding: 0 8px;
+}
+
+.chat-messages.interactive-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .pane-body {
   flex: 1;
   display: flex;

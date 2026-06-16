@@ -36,8 +36,14 @@
   const providerSelect = $('provider-select');
   const titlebarFolderPath = $('titlebar-folder-path');
 
+  function setStatusbarLabel(el, text) {
+    const label = el?.querySelector('.statusbar-item-label');
+    if (label) label.textContent = text;
+    else if (el) el.textContent = text;
+  }
+
   function setStatus(text) {
-    statusState.textContent = text;
+    setStatusbarLabel(statusState, text);
   }
 
   function showError(message) {
@@ -92,7 +98,7 @@
     state.provider = provider;
     const isOllama = provider === 'ollama';
 
-    statusMode.textContent = isOllama ? 'Ollama' : 'Grok';
+    setStatusbarLabel(statusMode, isOllama ? 'Ollama' : 'Grok');
     $('chat-hint').textContent = isOllama ? 'Docker / Ollama' : 'Grok CLI';
     chatInput.placeholder = isOllama
       ? 'Ask your local model… (Enter to send)'
@@ -203,9 +209,9 @@
         </div>
       </div>
       <div class="value">
-        <details class="thought-block hidden" id="current-thought-block">
-          <summary>Thinking</summary>
-          <div class="thought-content" id="current-thought-content"></div>
+        <details class="chat-thinking-box thought-block hidden" id="current-thought-block">
+          <summary class="chat-used-context-label">Thinking</summary>
+          <div class="chat-thinking-content thought-content" id="current-thought-content"></div>
         </details>
         <div class="rendered-markdown" id="current-response-md"></div>
       </div>
@@ -470,9 +476,12 @@
     setupThemePicker();
 
     const info = await window.appAPI.getInfo();
-    statusGrok.textContent = info.version === 'not found'
-      ? 'Grok CLI not found'
-      : info.version.replace(/^grok\s*/i, '');
+    setStatusbarLabel(
+      statusGrok,
+      info.version === 'not found'
+        ? 'Grok CLI not found'
+        : info.version.replace(/^grok\s*/i, '')
+    );
 
     $('setting-cwd').value = '';
     updateTitlebarFolder('');

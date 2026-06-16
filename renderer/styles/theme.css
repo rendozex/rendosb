@@ -37,8 +37,16 @@ html, body {
 [data-theme="github-dark"],
 [data-theme="nord"],
 [data-theme="tokyo-night"],
-[data-theme="catppuccin-mocha"] {
+[data-theme="catppuccin-mocha"],
+[data-theme="abyss"],
+[data-theme="tomorrow-night-blue"],
+[data-theme="kimbie-dark"],
+[data-theme="red"] {
   color-scheme: dark;
+}
+
+[data-theme="quiet-light"] {
+  color-scheme: light;
 }
 
 [data-theme="hc-light"] {

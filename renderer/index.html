@@ -18,6 +18,16 @@
   <link rel="stylesheet" href="styles/vscode-ui/codeBlockPart.css">
   <link rel="stylesheet" href="styles/vscode-ui/chatCodeBlockPill.css">
   <link rel="stylesheet" href="styles/vscode-ui/chatIncrementalRendering.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatAgentHover.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatStatus.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatViewPane.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatConfirmationWidget.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatTipContent.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatTerminalToolProgressPart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/activitybarpart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/statusbarpart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/panelpart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/editortabscontrol.css">
   <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
@@ -43,15 +53,17 @@
     </div>
 
     <div class="workbench-body">
-      <nav class="activitybar" aria-label="Activity Bar">
-        <div class="activitybar-item active" data-view="workspace" title="Explorer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
-        </div>
-        <div class="activitybar-item" data-view="chat" title="Chat">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-        </div>
-        <div class="activitybar-item" data-view="settings" title="Settings">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+      <nav class="part activitybar left bordered activitybar" aria-label="Activity Bar">
+        <div class="content">
+          <div class="activitybar-item active" data-view="workspace" title="Explorer">
+            <span class="codicon codicon-files" aria-hidden="true"></span>
+          </div>
+          <div class="activitybar-item" data-view="chat" title="Chat">
+            <span class="codicon codicon-comment-discussion" aria-hidden="true"></span>
+          </div>
+          <div class="activitybar-item" data-view="settings" title="Settings">
+            <span class="codicon codicon-settings-gear" aria-hidden="true"></span>
+          </div>
         </div>
       </nav>
 
@@ -62,7 +74,9 @@
               <span class="explorer-header-label">Explorer</span>
               <span class="explorer-root-label" id="explorer-root-label">No folder selected</span>
             </div>
-            <button class="btn icon-btn" id="btn-refresh-files" type="button" title="Refresh">↻</button>
+            <button class="btn icon-btn" id="btn-refresh-files" type="button" title="Refresh">
+              <span class="codicon codicon-refresh" aria-hidden="true"></span>
+            </button>
           </div>
           <div class="explorer-tree" id="file-tree">
             <div class="empty-state">Set a working directory in Settings</div>
@@ -81,8 +95,8 @@
           </div>
         </section>
 
-        <section class="chat-panel">
-          <div class="panel-header">
+        <section class="chat-panel part panel right">
+          <div class="panel-header composite title">
             <span class="panel-tab active">Chat</span>
           </div>
 
@@ -110,7 +124,7 @@
                   </div>
                 </div>
 
-                <div class="chat-messages hidden" id="chat-messages" role="log" aria-live="polite"></div>
+                <div class="chat-messages interactive-list hidden" id="chat-messages" role="log" aria-live="polite"></div>
 
                 <div class="ollama-guide hidden" id="ollama-setup-guide">
                   <h3>Docker / Ollama Setup</h3>
@@ -149,11 +163,20 @@
             </div>
           </div>
 
-          <div class="statusbar">
-            <span class="statusbar-item remote" id="status-mode">Grok</span>
-            <span class="statusbar-item" id="status-grok">Ready</span>
-            <span class="statusbar-spacer"></span>
-            <span class="statusbar-item" id="status-state">Ready</span>
+          <div class="part statusbar status-border-top">
+            <div class="left-items items-container">
+              <div class="statusbar-item prominent-kind remote-kind" id="status-mode">
+                <span class="statusbar-item-label">Grok</span>
+              </div>
+              <div class="statusbar-item" id="status-grok">
+                <span class="statusbar-item-label">Ready</span>
+              </div>
+            </div>
+            <div class="right-items items-container">
+              <div class="statusbar-item" id="status-state">
+                <span class="statusbar-item-label">Ready</span>
+              </div>
+            </div>
           </div>
         </section>
       </div>

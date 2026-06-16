@@ -12,7 +12,7 @@ A desktop LLM workbench with a VS Code–style UI. Chat with **Grok CLI** or **l
 - **VS Code–style layout** — file explorer, code editor, and chat panel side by side
 - **Working directory picker** — native Windows folder dialog; explorer scoped to the folder you choose
 - **Live file watching** — explorer refreshes while Grok is generating
-- **19 color themes** — Dark Modern, Dracula, Nord, Catppuccin, GitHub themes, high contrast, and more
+- **24 color themes** — Dark Modern, Dracula, Nord, Abyss, Red, Quiet Light, Catppuccin, GitHub themes, high contrast, and more
 - **Windows `.exe`** — build a portable desktop app with Electron
 
 ## Prerequisites
@@ -108,7 +108,15 @@ Or:
 .\scripts\sync-from-vscode.ps1
 ```
 
-This copies chat styles, codicons, code-block CSS, and all default theme JSON files from `../vscode-main` into `renderer/styles/vscode-ui/`. A manifest is written to `renderer/styles/vscode-ui/sync-manifest.json`.
+This copies chat styles, codicons, code-block CSS, workbench chrome (activity bar, status bar, panel, editor tabs), and theme JSON files from `../vscode-main` into `renderer/styles/vscode-ui/`. A manifest is written to `renderer/styles/vscode-ui/sync-manifest.json`.
+
+**Batch 2 assets** (synced from vscode-main):
+
+| Category | Files |
+|----------|-------|
+| Chat polish | `chatAgentHover`, `chatStatus`, `chatViewPane`, `chatConfirmationWidget`, `chatTipContent`, `chatTerminalToolProgressPart` |
+| Workbench chrome | `activitybarpart`, `statusbarpart`, `panelpart`, `editortabscontrol` |
+| Extension themes | Abyss, Tomorrow Night Blue, Quiet Light, Red, Kimbie Dark |
 
 Custom RendoSB themes in `renderer/styles/themes.css` are not overwritten — only the extracted VS Code assets are updated.
 

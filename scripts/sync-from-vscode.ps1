@@ -41,7 +41,19 @@ $FileMap = @(
   @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\chatIncrementalRendering\media\chatIncrementalRendering.css"; Dst = "renderer\styles\vscode-ui\chatIncrementalRendering.css" },
   @{ Src = "src\vs\base\browser\ui\codicons\codicon\codicon.css"; Dst = "renderer\styles\vscode-ui\codicon.css" },
   @{ Src = "src\vs\base\browser\ui\codicons\codicon\codicon-modifiers.css"; Dst = "renderer\styles\vscode-ui\codicon-modifiers.css" },
-  @{ Src = "extensions\theme-defaults\themes\dark_modern.json"; Dst = "renderer\styles\vscode-ui\dark_modern.json" }
+  @{ Src = "extensions\theme-defaults\themes\dark_modern.json"; Dst = "renderer\styles\vscode-ui\dark_modern.json" },
+  # Batch 2 — chat UI polish
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\media\chatAgentHover.css"; Dst = "renderer\styles\vscode-ui\chatAgentHover.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\chatStatus\media\chatStatus.css"; Dst = "renderer\styles\vscode-ui\chatStatus.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widgetHosts\viewPane\media\chatViewPane.css"; Dst = "renderer\styles\vscode-ui\chatViewPane.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatConfirmationWidget.css"; Dst = "renderer\styles\vscode-ui\chatConfirmationWidget.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatTipContent.css"; Dst = "renderer\styles\vscode-ui\chatTipContent.css" },
+  @{ Src = "src\vs\workbench\contrib\chat\browser\widget\chatContentParts\media\chatTerminalToolProgressPart.css"; Dst = "renderer\styles\vscode-ui\chatTerminalToolProgressPart.css" },
+  # Batch 2 — workbench chrome
+  @{ Src = "src\vs\workbench\browser\parts\activitybar\media\activitybarpart.css"; Dst = "renderer\styles\vscode-ui\activitybarpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\statusbar\media\statusbarpart.css"; Dst = "renderer\styles\vscode-ui\statusbarpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\panel\media\panelpart.css"; Dst = "renderer\styles\vscode-ui\panelpart.css" },
+  @{ Src = "src\vs\workbench\browser\parts\editor\media\editortabscontrol.css"; Dst = "renderer\styles\vscode-ui\editortabscontrol.css" }
 )
 
 $CodiconFontCandidates = @(
@@ -109,16 +121,47 @@ if (-not $codiconCopied) {
 }
 
 $themeSrcDir = Join-Path $VscodeRoot "extensions\theme-defaults\themes"
+$ExtThemeDir = Join-Path $ThemeDir "extensions"
+New-Item -ItemType Directory -Force -Path $ExtThemeDir | Out-Null
 $themeCount = 0
+
 if (Test-Path $themeSrcDir) {
   Get-ChildItem -Path $themeSrcDir -Filter "*.json" | ForEach-Object {
     $dstTheme = Join-Path $ThemeDir $_.Name
-    $changed = -not (Test-Path $dstTheme) -or ((Get-FileHash $_.FullName).Hash -ne (Get-FileHash $dstTheme).Hash)
+    $changed = $true
+    if (Test-Path $dstTheme) {
+      $changed = (Get-FileHash $_.FullName).Hash -ne (Get-FileHash $dstTheme).Hash
+    }
     Copy-Item $_.FullName $dstTheme -Force
     $themeCount++
     if ($changed) {
       $updated++
       Write-Host "  UPDATED  renderer/styles/vscode-ui/themes/$($_.Name)" -ForegroundColor Green
+    }
+  }
+}
+
+$extensionThemePacks = @(
+  "theme-abyss",
+  "theme-tomorrow-night-blue",
+  "theme-quietlight",
+  "theme-red",
+  "theme-kimbie-dark"
+)
+foreach ($pack in $extensionThemePacks) {
+  $packDir = Join-Path $VscodeRoot "extensions\$pack\themes"
+  if (-not (Test-Path $packDir)) { continue }
+  Get-ChildItem -Path $packDir -Filter "*.json" | ForEach-Object {
+    $dstTheme = Join-Path $ExtThemeDir $_.Name
+    $changed = $true
+    if (Test-Path $dstTheme) {
+      $changed = (Get-FileHash $_.FullName).Hash -ne (Get-FileHash $dstTheme).Hash
+    }
+    Copy-Item $_.FullName $dstTheme -Force
+    $themeCount++
+    if ($changed) {
+      $updated++
+      Write-Host "  UPDATED  renderer/styles/vscode-ui/themes/extensions/$($_.Name)" -ForegroundColor Green
     }
   }
 }

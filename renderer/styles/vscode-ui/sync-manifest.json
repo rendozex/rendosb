@@ -1,5 +1,5 @@
 ﻿{
-    "syncedAt":  "2026-06-16T22:10:42.4248074+01:00",
+    "syncedAt":  "2026-06-16T22:14:22.0394903+01:00",
     "themeJsonDir":  "renderer/styles/vscode-ui/themes",
     "files":  [
                   "renderer\\styles\\vscode-ui\\chat.css",
@@ -11,7 +11,17 @@
                   "renderer\\styles\\vscode-ui\\chatIncrementalRendering.css",
                   "renderer\\styles\\vscode-ui\\codicon.css",
                   "renderer\\styles\\vscode-ui\\codicon-modifiers.css",
-                  "renderer\\styles\\vscode-ui\\dark_modern.json"
+                  "renderer\\styles\\vscode-ui\\dark_modern.json",
+                  "renderer\\styles\\vscode-ui\\chatAgentHover.css",
+                  "renderer\\styles\\vscode-ui\\chatStatus.css",
+                  "renderer\\styles\\vscode-ui\\chatViewPane.css",
+                  "renderer\\styles\\vscode-ui\\chatConfirmationWidget.css",
+                  "renderer\\styles\\vscode-ui\\chatTipContent.css",
+                  "renderer\\styles\\vscode-ui\\chatTerminalToolProgressPart.css",
+                  "renderer\\styles\\vscode-ui\\activitybarpart.css",
+                  "renderer\\styles\\vscode-ui\\statusbarpart.css",
+                  "renderer\\styles\\vscode-ui\\panelpart.css",
+                  "renderer\\styles\\vscode-ui\\editortabscontrol.css"
               ],
     "vscodeRoot":  "C:\\Users\\sfsdf\\Desktop\\code projects\\grok app\\vscode-main"
 }
