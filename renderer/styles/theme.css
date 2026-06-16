@@ -1,0 +1,46 @@
+/* Base layout tokens — colors live in themes.css */
+
+:root {
+  --vscode-cornerRadius-large: 8px;
+  --vscode-cornerRadius-small: 4px;
+  --vscode-font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --vscode-monospace-font: "Cascadia Code", "Consolas", "Courier New", monospace;
+  --chat-current-response-min-height: 120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--vscode-font-family);
+  font-size: 13px;
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme^="light"] {
+  color-scheme: light;
+}
+
+[data-theme^="dark"],
+[data-theme="hc-dark"],
+[data-theme="one-dark"],
+[data-theme="dracula"],
+[data-theme="monokai"],
+[data-theme="solarized-dark"],
+[data-theme="github-dark"],
+[data-theme="nord"],
+[data-theme="tokyo-night"],
+[data-theme="catppuccin-mocha"] {
+  color-scheme: dark;
+}
+
+[data-theme="hc-light"] {
+  color-scheme: light;
+}

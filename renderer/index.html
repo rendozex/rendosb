@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' http://127.0.0.1:* http://localhost:*">
+  <title>RendoSB</title>
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/themes.css">
+  <link rel="stylesheet" href="styles/workbench.css">
+  <link rel="stylesheet" href="styles/editor.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chat.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatViewWelcome.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatMarkdownPart.css">
+  <link rel="stylesheet" href="styles/vscode-ui/chatThinkingContent.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div class="monaco-workbench">
+    <div class="titlebar">
+      <span class="titlebar-title">RendoSB</span>
+      <div class="titlebar-controls">
+        <span class="titlebar-label">Folder</span>
+        <button class="btn secondary titlebar-btn" id="btn-titlebar-folder" type="button">Browse</button>
+        <span class="titlebar-folder-path" id="titlebar-folder-path" title="">No folder selected</span>
+        <span class="titlebar-divider"></span>
+        <span class="titlebar-label">Provider</span>
+        <select class="titlebar-select" id="provider-select" aria-label="AI provider">
+          <option value="grok">Grok CLI</option>
+          <option value="ollama">Docker / Ollama</option>
+        </select>
+        <span class="titlebar-label">Model</span>
+        <select class="titlebar-select" id="model-select" aria-label="Model"></select>
+      </div>
+      <div class="titlebar-actions">
+        <button class="btn secondary" id="btn-new-chat" type="button">New Chat</button>
+      </div>
+    </div>
+
+    <div class="workbench-body">
+      <nav class="activitybar" aria-label="Activity Bar">
+        <div class="activitybar-item active" data-view="workspace" title="Explorer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+        </div>
+        <div class="activitybar-item" data-view="chat" title="Chat">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+        </div>
+        <div class="activitybar-item" data-view="settings" title="Settings">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+      </nav>
+
+      <div class="workspace-split">
+        <aside class="explorer-panel" id="explorer-panel">
+          <div class="explorer-header">
+            <div class="explorer-header-titles">
+              <span class="explorer-header-label">Explorer</span>
+              <span class="explorer-root-label" id="explorer-root-label">No folder selected</span>
+            </div>
+            <button class="btn icon-btn" id="btn-refresh-files" type="button" title="Refresh">↻</button>
+          </div>
+          <div class="explorer-tree" id="file-tree">
+            <div class="empty-state">Set a working directory in Settings</div>
+          </div>
+        </aside>
+
+        <section class="editor-panel" id="editor-panel">
+          <div class="editor-tabs" id="editor-tabs"></div>
+          <div class="editor-live-banner" id="editor-live-banner">Writing file…</div>
+          <div class="editor-viewport">
+            <div class="editor-gutter" id="editor-gutter"></div>
+            <div class="editor-code-wrap">
+              <div class="editor-empty" id="editor-empty">Open a file from the explorer, or ask the AI to write code</div>
+              <pre class="editor-code hidden" id="editor-code"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="chat-panel">
+          <div class="panel-header">
+            <span class="panel-tab active">Chat</span>
+          </div>
+
+          <div class="panel-body" id="chat-view">
+            <div class="pane-body chat-view-welcome-visible" id="pane-body">
+              <div class="chat-scroll-area">
+                <div class="chat-view-welcome" id="chat-welcome">
+                  <div class="interactive-session">
+                    <div class="chat-welcome-view-container">
+                      <div class="chat-welcome-view">
+                        <div class="chat-welcome-view-icon large-icon">
+                          <span style="font-size:48px;">✦</span>
+                        </div>
+                        <div class="chat-welcome-view-title">RendoSB</div>
+                        <div class="chat-welcome-view-message">
+                          Select a <strong>folder</strong> at the top, then chat with <strong>Grok CLI</strong> or <strong>Docker/Ollama</strong>.
+                        </div>
+                        <div class="chat-welcome-view-tips">
+                          <button class="btn secondary welcome-prompt" type="button" data-prompt="Create a hello.py file that prints hello world">Write hello.py</button>
+                          <button class="btn secondary welcome-prompt" type="button" data-prompt="Explain what you can help me with">What can you do?</button>
+                          <button class="btn secondary welcome-prompt" type="button" data-prompt="Help me debug a bug in my code">Debug my code</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="chat-messages hidden" id="chat-messages" role="log" aria-live="polite"></div>
+
+                <div class="ollama-guide hidden" id="ollama-setup-guide">
+                  <h3>Docker / Ollama Setup</h3>
+                  <p class="ollama-guide-intro">Run a local model in Docker, then pick it from the Model dropdown above.</p>
+                  <ol class="ollama-guide-steps">
+                    <li>Install <a href="#" class="md-link" data-url="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> and start it.</li>
+                    <li>Open PowerShell and run:
+                      <pre><code>docker run -d --name ollama -p 11434:11434 ollama/ollama</code></pre>
+                    </li>
+                    <li>Pull a model:
+                      <pre><code>docker exec -it ollama ollama pull llama3.2</code></pre>
+                    </li>
+                    <li>Confirm Ollama is running — you should see models in the <strong>Model</strong> dropdown.</li>
+                  </ol>
+                  <p class="ollama-guide-note">Default URL: <code>http://127.0.0.1:11434</code> (change in Settings if needed)</p>
+                  <div class="ollama-guide-error hidden" id="ollama-guide-error" role="alert"></div>
+                </div>
+              </div>
+
+              <div id="error-banner" class="error-banner hidden" role="alert"></div>
+
+              <div class="interactive-input-part" id="chat-input-section">
+                <div class="chat-input-container" id="chat-input-container">
+                  <div class="interactive-input-editor">
+                    <textarea id="chat-input" rows="1" placeholder="Ask anything… (Enter to send)" aria-label="Chat input"></textarea>
+                  </div>
+                  <div class="chat-input-toolbars">
+                    <span class="chat-input-hint" id="chat-hint">Grok CLI</span>
+                    <div class="chat-input-actions">
+                      <button class="btn secondary" id="btn-stop" type="button" disabled>Stop</button>
+                      <button class="btn" id="btn-send" type="button">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="statusbar">
+            <span class="statusbar-item remote" id="status-mode">Grok</span>
+            <span class="statusbar-item" id="status-grok">Ready</span>
+            <span class="statusbar-spacer"></span>
+            <span class="statusbar-item" id="status-state">Ready</span>
+          </div>
+        </section>
+      </div>
+
+      <aside class="sidebar hidden" id="sidebar-settings">
+        <div class="sidebar-header">Settings</div>
+        <div class="sidebar-content settings-panel">
+          <div class="settings-row">
+            <label for="setting-theme">Theme</label>
+            <select id="setting-theme" aria-label="Color theme"></select>
+          </div>
+          <div class="settings-row">
+            <label for="setting-cwd">Working directory</label>
+            <div style="display:flex;gap:6px;">
+              <input type="text" id="setting-cwd" style="flex:1;" readonly placeholder="No folder selected">
+              <button class="btn secondary" id="btn-pick-cwd" type="button">Browse</button>
+            </div>
+          </div>
+          <div class="settings-row">
+            <label for="setting-ollama-url">Ollama URL (Docker)</label>
+            <input type="text" id="setting-ollama-url" value="http://127.0.0.1:11434" placeholder="http://127.0.0.1:11434">
+            <small style="color:var(--vscode-descriptionForeground);font-size:11px;">
+              Run: <code>docker run -d -p 11434:11434 ollama/ollama</code> then <code>ollama pull llama3.2</code>
+            </small>
+          </div>
+          <div class="settings-row">
+            <label for="setting-permission">Permission mode (Grok)</label>
+            <select id="setting-permission">
+              <option value="bypassPermissions">Bypass permissions</option>
+              <option value="auto">Auto</option>
+              <option value="acceptEdits">Accept edits</option>
+              <option value="default">Default</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <label for="setting-max-turns">Max turns</label>
+            <input type="number" id="setting-max-turns" min="1" max="100" value="25">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="scripts/api.js"></script>
+  <script src="scripts/themes.js"></script>
+  <script src="scripts/workspace.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

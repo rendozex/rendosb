@@ -1,0 +1,46 @@
+{
+  "name": "rendosb",
+  "version": "1.0.0",
+  "description": "RendoSB — custom LLM GUI using VS Code chat UI and local Grok CLI",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:web": "node server.js",
+    "desktop": "electron .",
+    "dev": "node server.js",
+    "dev:desktop": "electron . --dev",
+    "build": "electron-builder --win dir && node scripts/zip-release.js",
+    "build:portable": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis"
+  },
+  "author": "",
+  "license": "MIT",
+  "build": {
+    "appId": "com.rendosb.app",
+    "productName": "RendoSB",
+    "copyright": "MIT",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "forceCodeSigning": false,
+    "win": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": ["x64"]
+        }
+      ],
+      "signAndEditExecutable": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.7.5",
+    "electron-builder": "^25.1.8"
+  }
+}
